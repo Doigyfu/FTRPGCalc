@@ -14,20 +14,23 @@ public class Calculadora {
             persuasao, velocidadeDeAtaque;
     int raca, subraca;
     boolean magico;
-    
-    Calculadora(){
+
+    Calculadora() {
         magico = true;
         raca = 0;
         subraca = 0;
         calcularTudo();
     }
 
-    public int getAcerto() {
-        return acerto;
+    //##########################################################################
+    //##  MÉTODOS RELACIONADOS AOS ATRIBUTOS PRIMÁRIOS
+    //##########################################################################
+    public int getForca() {
+        return forca;
     }
 
-    public void setAcerto(int acerto) {
-        this.acerto = acerto;
+    public void setForca(int forca) {
+        this.forca = forca;
     }
 
     public int getAgilidade() {
@@ -38,76 +41,12 @@ public class Calculadora {
         this.agilidade = agilidade;
     }
 
-    public int getBloqueio() {
-        return bloqueio;
+    public int getVitalidade() {
+        return vitalidade;
     }
 
-    public void setBloqueio(int bloqueio) {
-        this.bloqueio = bloqueio;
-    }
-
-    public int getCarisma() {
-        return carisma;
-    }
-
-    public void setCarisma(int carisma) {
-        this.carisma = carisma;
-    }
-
-    public int getConcentracao() {
-        return concentracao;
-    }
-
-    public void setConcentracao(int concentracao) {
-        this.concentracao = concentracao;
-    }
-
-    public int getControleMagico() {
-        return controleMagico;
-    }
-
-    public void setControleMagico(int controleMagico) {
-        this.controleMagico = controleMagico;
-    }
-
-    public int getDano() {
-        return dano;
-    }
-
-    public void setDano(int dano) {
-        this.dano = dano;
-    }
-
-    public int getDestreza() {
-        return destreza;
-    }
-
-    public void setDestreza(int destreza) {
-        this.destreza = destreza;
-    }
-
-    public int getEsquiva() {
-        return esquiva;
-    }
-
-    public void setEsquiva(int esquiva) {
-        this.esquiva = esquiva;
-    }
-
-    public int getForca() {
-        return forca;
-    }
-
-    public void setForca(int forca) {
-        this.forca = forca;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void setVitalidade(int vitalidade) {
+        this.vitalidade = vitalidade;
     }
 
     public int getInteligencia() {
@@ -118,20 +57,12 @@ public class Calculadora {
         this.inteligencia = inteligencia;
     }
 
-    public boolean isMagico() {
-        return magico;
+    public int getDestreza() {
+        return destreza;
     }
 
-    public void setMagico(boolean magico) {
-        this.magico = magico;
-    }
-
-    public int getMp() {
-        return mp;
-    }
-
-    public void setMp(int mp) {
-        this.mp = mp;
+    public void setDestreza(int destreza) {
+        this.destreza = destreza;
     }
 
     public int getPercepcao() {
@@ -142,20 +73,12 @@ public class Calculadora {
         this.percepcao = percepcao;
     }
 
-    public int getPersuasao() {
-        return persuasao;
+    public int getCarisma() {
+        return carisma;
     }
 
-    public void setPersuasao(int persuasao) {
-        this.persuasao = persuasao;
-    }
-
-    public int getPoderDeFogo() {
-        return poderDeFogo;
-    }
-
-    public void setPoderDeFogo(int poderDeFogo) {
-        this.poderDeFogo = poderDeFogo;
+    public void setCarisma(int carisma) {
+        this.carisma = carisma;
     }
 
     public int getPoderMagico() {
@@ -166,14 +89,6 @@ public class Calculadora {
         this.poderMagico = poderMagico;
     }
 
-    public int getRaca() {
-        return raca;
-    }
-
-    public void setRaca(int raca) {
-        this.raca = raca;
-    }
-
     public int getResistencia() {
         return resistencia;
     }
@@ -182,40 +97,27 @@ public class Calculadora {
         this.resistencia = resistencia;
     }
 
-    public int getSt() {
-        return st;
+    //##########################################################################
+    //##  MÉTODOS RELACIONADOS AOS NÍVEIS
+    //##########################################################################
+    public int getHp() {
+        return hp;
     }
 
-    public void setSt(int st) {
-        this.st = st;
-    }
-
-    public int getSubraca() {
-        return subraca;
-    }
-
-    public void setSubraca(int subraca) {
-        this.subraca = subraca;
-    }
-
-    public int getVelocidadeDeAtaque() {
-        return velocidadeDeAtaque;
-    }
-
-    public void setVelocidadeDeAtaque(int velocidadeDeAtaque) {
-        this.velocidadeDeAtaque = velocidadeDeAtaque;
-    }
-
-    public int getVitalidade() {
-        return vitalidade;
-    }
-
-    public void setVitalidade(int vitalidade) {
-        this.vitalidade = vitalidade;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public void calcularHp() {
         hp = (int) ((vitalidade * 10) + 20);
+    }
+
+    public int getMp() {
+        return mp;
+    }
+
+    public void setMp(int mp) {
+        this.mp = mp;
     }
 
     public void calcularMp() {
@@ -226,6 +128,14 @@ public class Calculadora {
         }
     }
 
+    public int getSt() {
+        return st;
+    }
+
+    public void setSt(int st) {
+        this.st = st;
+    }
+
     public void calcularSt() {
         if (!magico) {
             st = (int) ((resistencia * 5) + 20);
@@ -234,20 +144,63 @@ public class Calculadora {
         }
     }
 
+    //##########################################################################
+    //##  MÉTODOS RELACIONADOS AOS ATRIBUTOS SECUNDÁRIOS
+    //##########################################################################
+    public int getDano() {
+        return dano;
+    }
+
+    public void setDano(int dano) {
+        this.dano = dano;
+    }
+
     public void calcularDano() {
         dano = (int) (forca + (0.5 * agilidade));
+    }
+
+    public int getPoderDeFogo() {
+        return poderDeFogo;
+    }
+
+    public void setPoderDeFogo(int poderDeFogo) {
+        this.poderDeFogo = poderDeFogo;
     }
 
     public void calcularPoderDeFogo() {
         poderDeFogo = (int) (destreza + (0.5 * percepcao));
     }
 
+    public int getAcerto() {
+        return acerto;
+    }
+
+    public void setAcerto(int acerto) {
+        this.acerto = acerto;
+    }
+
     public void calcularAcerto() {
         acerto = (int) (percepcao + (0.5 * destreza));
     }
 
+    public int getEsquiva() {
+        return esquiva;
+    }
+
+    public void setEsquiva(int esquiva) {
+        this.esquiva = esquiva;
+    }
+
     public void calcularEsquiva() {
         esquiva = (int) (agilidade + (0.5 * destreza));
+    }
+
+    public int getBloqueio() {
+        return bloqueio;
+    }
+
+    public void setBloqueio(int bloqueio) {
+        this.bloqueio = bloqueio;
     }
 
     public void calcularBloqueio() {
@@ -258,12 +211,28 @@ public class Calculadora {
         }
     }
 
+    public int getControleMagico() {
+        return controleMagico;
+    }
+
+    public void setControleMagico(int controleMagico) {
+        this.controleMagico = controleMagico;
+    }
+
     public void calcularControleMagico() {
         if (magico) {
             controleMagico = (int) (inteligencia + (0.5 * poderMagico));
         } else {
             controleMagico = 0;
         }
+    }
+
+    public int getConcentracao() {
+        return concentracao;
+    }
+
+    public void setConcentracao(int concentracao) {
+        this.concentracao = concentracao;
     }
 
     public void calcularConcentracao() {
@@ -274,8 +243,24 @@ public class Calculadora {
         }
     }
 
+    public int getPersuasao() {
+        return persuasao;
+    }
+
+    public void setPersuasao(int persuasao) {
+        this.persuasao = persuasao;
+    }
+
     public void calcularPersuasao() {
         persuasao = (int) (carisma + (0.5 * inteligencia));
+    }
+
+    public int getVelocidadeDeAtaque() {
+        return velocidadeDeAtaque;
+    }
+
+    public void setVelocidadeDeAtaque(int velocidadeDeAtaque) {
+        this.velocidadeDeAtaque = velocidadeDeAtaque;
     }
 
     public void calcularVelocidadeDeAtaque() {
@@ -295,5 +280,32 @@ public class Calculadora {
         calcularConcentracao();
         calcularPersuasao();
         calcularVelocidadeDeAtaque();
+    }
+
+    //##########################################################################
+    //##  MÉTODOS RELACIONADOS AOS OUTROS ATRIBUTOS
+    //##########################################################################
+    public boolean isMagico() {
+        return magico;
+    }
+
+    public void setMagico(boolean magico) {
+        this.magico = magico;
+    }
+
+    public int getRaca() {
+        return raca;
+    }
+
+    public void setRaca(int raca) {
+        this.raca = raca;
+    }
+
+    public int getSubraca() {
+        return subraca;
+    }
+
+    public void setSubraca(int subraca) {
+        this.subraca = subraca;
     }
 }
