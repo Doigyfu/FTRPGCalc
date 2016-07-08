@@ -20,6 +20,7 @@ public class Calculadora {
     private int raca, subraca;
     private boolean primeiroGrau;
     private boolean magico;
+    private int pontosGastos;
 
     Calculadora() {
         magico = true;
@@ -38,6 +39,30 @@ public class Calculadora {
 
     public void setForca(int forca) {
         this.forca = forca;
+        calcularDano();
+        if(magico){
+            calcularBloqueio();
+        }
+    }
+    
+    public void incForca(){
+        forca++;
+        calcularDano();
+        if(magico){
+            calcularBloqueio();
+        }
+    }
+    
+    public void decForca(){
+        rmvBonusRaca();
+        if(forca < 0){
+            forca--;
+        }
+        addBonusRaca();
+        calcularDano();
+        if(magico){
+            calcularBloqueio();
+        }
     }
 
     public int getAgilidade() {
@@ -46,6 +71,24 @@ public class Calculadora {
 
     public void setAgilidade(int agilidade) {
         this.agilidade = agilidade;
+        calcularDano();
+        calcularEsquiva();
+    }
+    
+    public void incAgilidade(){
+        agilidade++;
+        calcularDano();
+        calcularEsquiva();
+    }
+    
+    public void decAgilidade(){
+        rmvBonusRaca();
+        if(agilidade < 0){
+            agilidade--;
+        }
+        addBonusRaca();
+        calcularDano();
+        calcularEsquiva();
     }
 
     public int getVitalidade() {
@@ -54,6 +97,24 @@ public class Calculadora {
 
     public void setVitalidade(int vitalidade) {
         this.vitalidade = vitalidade;
+        calcularHp();
+        calcularBloqueio();
+    }
+    
+    public void incVitalidade(){
+        vitalidade++;
+        calcularHp();
+        calcularBloqueio();
+    }
+    
+    public void decVitalidade(){
+        rmvBonusRaca();
+        if(vitalidade < 0){
+            vitalidade--;
+        }
+        addBonusRaca();
+        calcularHp();
+        calcularBloqueio();
     }
 
     public int getInteligencia() {
@@ -62,6 +123,24 @@ public class Calculadora {
 
     public void setInteligencia(int inteligencia) {
         this.inteligencia = inteligencia;
+        calcularControleMagico();
+        calcularPersuasao();
+    }
+    
+    public void incInteligencia(){
+        inteligencia++;
+        calcularControleMagico();
+        calcularPersuasao();
+    }
+    
+    public void decInteligencia(){
+        rmvBonusRaca();
+        if(inteligencia < 0){
+            inteligencia--;
+        }
+        addBonusRaca();
+        calcularControleMagico();
+        calcularPersuasao();
     }
 
     public int getDestreza() {
@@ -70,6 +149,27 @@ public class Calculadora {
 
     public void setDestreza(int destreza) {
         this.destreza = destreza;
+        calcularPoderDeFogo();
+        calcularAcerto();
+        calcularEsquiva();
+    }
+    
+    public void incDestreza(){
+        destreza++;
+        calcularPoderDeFogo();
+        calcularAcerto();
+        calcularEsquiva();
+    }
+    
+    public void decDestreza(){
+        rmvBonusRaca();
+        if(destreza < 0){
+            destreza--;
+        }
+        addBonusRaca();
+        calcularPoderDeFogo();
+        calcularAcerto();
+        calcularEsquiva();
     }
 
     public int getPercepcao() {
@@ -78,6 +178,24 @@ public class Calculadora {
 
     public void setPercepcao(int percepcao) {
         this.percepcao = percepcao;
+        calcularPoderDeFogo();
+        calcularAcerto();
+    }
+    
+    public void incPercepcao(){
+        percepcao++;
+        calcularPoderDeFogo();
+        calcularAcerto();
+    }
+    
+    public void decPercepcao(){
+        rmvBonusRaca();
+        if(percepcao < 0){
+            percepcao--;
+        }
+        addBonusRaca();
+        calcularPoderDeFogo();
+        calcularAcerto();
     }
 
     public int getCarisma() {
@@ -86,6 +204,21 @@ public class Calculadora {
 
     public void setCarisma(int carisma) {
         this.carisma = carisma;
+        calcularPersuasao();
+    }
+    
+    public void incCarisma(){
+        carisma++;
+        calcularPersuasao();
+    }
+    
+    public void decCarisma(){
+        rmvBonusRaca();
+        if(carisma < 0){
+            carisma--;
+        }
+        addBonusRaca();
+        calcularPersuasao();
     }
 
     public int getPoderMagico() {
@@ -94,6 +227,24 @@ public class Calculadora {
 
     public void setPoderMagico(int poderMagico) {
         this.poderMagico = poderMagico;
+        calcularMp();
+        calcularControleMagico();
+    }    
+    
+    public void incPoderMagico(){
+        poderMagico++;
+        calcularMp();
+        calcularControleMagico();
+    }
+    
+    public void decPoderMagico(){
+        rmvBonusRaca();
+        if(poderMagico < 0){
+            poderMagico--;
+        }
+        addBonusRaca();
+        calcularMp();
+        calcularControleMagico();
     }
 
     public int getResistencia() {
@@ -102,6 +253,24 @@ public class Calculadora {
 
     public void setResistencia(int resistencia) {
         this.resistencia = resistencia;
+        calcularSt();
+        calcularBloqueio();
+    }    
+    
+    public void incResistencia(){
+        resistencia++;
+        calcularSt();
+        calcularBloqueio();
+    }
+    
+    public void decResistencia(){
+        rmvBonusRaca();
+        if(resistencia < 0){
+            resistencia--;
+        }
+        addBonusRaca();
+        calcularSt();
+        calcularBloqueio();
     }
 
     //##########################################################################
@@ -507,4 +676,20 @@ public class Calculadora {
                 System.exit(-1);
         }
     }
+    
+    //##########################################################################
+    //##  OUTROS MÉTODOS
+    //##########################################################################
+    
+    public void calcularPontosGastos(){
+        rmvBonusRaca();
+        pontosGastos = (forca + agilidade + vitalidade + inteligencia + destreza +
+                percepcao + carisma + poderMagico + resistencia);
+        addBonusRaca();
+    }
+
+    public int getPontosGastos() {
+        return pontosGastos;
+    }
+    
 }
