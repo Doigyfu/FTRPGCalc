@@ -1,24 +1,31 @@
 package ftrpgcalc;
 
 /**
- * Classe que armazena os dados de atributos e efetua suas operações.
+ * Classe que armazena os dados de atributos e efetua suas operações. Lista de
+ * raças: 0 = Humano 1 = Espírito Estelar 2 = Humanóide 3 = Demônio (a definir
+ * detalhes e implementar)
+ *
+ * Lista de subraças: 0 = Felinos 1 = Caninos 2 = Aves 3 = Anfíbios 4 = Répteis
+ * 5 = Primatas 6 = Bovinos e Equinos
  *
  * @author Doigyfu
  */
 public class Calculadora {
 
-    int forca, agilidade, vitalidade, inteligencia, destreza, percepcao, carisma,
-            poderMagico, resistencia;
-    int hp, mp, st;
-    int dano, poderDeFogo, acerto, esquiva, bloqueio, controleMagico, concentracao,
-            persuasao, velocidadeDeAtaque;
-    int raca, subraca;
-    boolean magico;
+    private int forca, agilidade, vitalidade, inteligencia, destreza, percepcao,
+            carisma, poderMagico, resistencia;
+    private int hp, mp, st;
+    private int dano, poderDeFogo, acerto, esquiva, bloqueio, controleMagico,
+            concentracao, persuasao, velocidadeDeAtaque;
+    private int raca, subraca;
+    private boolean primeiroGrau;
+    private boolean magico;
 
     Calculadora() {
         magico = true;
         raca = 0;
         subraca = 0;
+        addBonusRaca();
         calcularTudo();
     }
 
@@ -307,5 +314,197 @@ public class Calculadora {
 
     public void setSubraca(int subraca) {
         this.subraca = subraca;
+    }
+
+    public boolean isPrimeiroGrau() {
+        return primeiroGrau;
+    }
+
+    public void setPrimeiroGrau(boolean primeiroGrau) {
+        this.primeiroGrau = primeiroGrau;
+    }
+
+    public void addBonusRaca() {
+        switch (raca) {
+            case 0:
+                //  HUMANOS
+                carisma += 2;
+                inteligencia += 2;
+                destreza += 2;
+                break;
+
+            case 1:
+                //  ESPÍRITOS ESTELARES
+                poderMagico += 3;
+                carisma += 2;
+                inteligencia += 1;
+                break;
+
+            case 2:
+                //  HUMANÓIDES
+                int bonus = 3;
+                if (primeiroGrau) {
+                    bonus = 4;
+                }
+                switch (subraca) {
+                    case 0:
+                        //  FELINOS
+                        agilidade += bonus;
+                        destreza += bonus;
+                        percepcao += bonus;
+                        bloqueio -= bonus;
+                        break;
+
+                    case 1:
+                        //  CANINOS
+                        forca += bonus;
+                        agilidade += bonus;
+                        percepcao += bonus;
+                        esquiva -= bonus;
+                        break;
+
+                    case 2:
+                        //  AVES
+                        inteligencia += bonus;
+                        destreza += bonus;
+                        percepcao += bonus;
+                        bloqueio -= bonus;
+                        break;
+
+                    case 3:
+                        //  ANFÍBIOS
+                        vitalidade += bonus;
+                        inteligencia += bonus;
+                        percepcao += bonus;
+                        esquiva -= bonus;
+                        break;
+
+                    case 4:
+                        //  RÉPTEIS
+                        forca += bonus;
+                        destreza += bonus;
+                        inteligencia += bonus;
+                        break;
+
+                    case 5:
+                        //  PRIMATAS
+                        agilidade += bonus;
+                        destreza += bonus;
+                        percepcao += bonus;
+                        break;
+
+                    case 6:
+                        //  BOVINOS E EQUINOS
+                        forca += bonus;
+                        agilidade += bonus;
+                        vitalidade += bonus;
+                        break;
+                        
+                    default:
+                        System.exit(-1);
+
+                }
+                break;
+                
+            case 3:
+                //  DEMÔNIOS
+                //  A IMPLEMENTAR
+                break;
+                
+            default:
+                System.exit(-1);
+        }
+    }
+    
+    public void rmvBonusRaca() {
+        switch (raca) {
+            case 0:
+                //  HUMANOS
+                carisma -= 2;
+                inteligencia -= 2;
+                destreza -= 2;
+                break;
+
+            case 1:
+                //  ESPÍRITOS ESTELARES
+                poderMagico -= 3;
+                carisma -= 2;
+                inteligencia -= 1;
+                break;
+
+            case 2:
+                //  HUMANÓIDES
+                int bonus = 3;
+                if (primeiroGrau) {
+                    bonus = 4;
+                }
+                switch (subraca) {
+                    case 0:
+                        //  FELINOS
+                        agilidade -= bonus;
+                        destreza -= bonus;
+                        percepcao -= bonus;
+                        bloqueio += bonus;
+                        break;
+
+                    case 1:
+                        //  CANINOS
+                        forca -= bonus;
+                        agilidade -= bonus;
+                        percepcao -= bonus;
+                        esquiva += bonus;
+                        break;
+
+                    case 2:
+                        //  AVES
+                        inteligencia -= bonus;
+                        destreza -= bonus;
+                        percepcao -= bonus;
+                        bloqueio += bonus;
+                        break;
+
+                    case 3:
+                        //  ANFÍBIOS
+                        vitalidade -= bonus;
+                        inteligencia -= bonus;
+                        percepcao -= bonus;
+                        esquiva += bonus;
+                        break;
+
+                    case 4:
+                        //  RÉPTEIS
+                        forca -= bonus;
+                        destreza -= bonus;
+                        inteligencia -= bonus;
+                        break;
+
+                    case 5:
+                        //  PRIMATAS
+                        agilidade -= bonus;
+                        destreza -= bonus;
+                        percepcao -= bonus;
+                        break;
+
+                    case 6:
+                        //  BOVINOS E EQUINOS
+                        forca -= bonus;
+                        agilidade -= bonus;
+                        vitalidade -= bonus;
+                        break;
+                        
+                    default:
+                        System.exit(-1);
+
+                }
+                break;
+                
+            case 3:
+                //  DEMÔNIOS
+                //  A IMPLEMENTAR
+                break;
+                
+            default:
+                System.exit(-1);
+        }
     }
 }
