@@ -10,6 +10,6 @@ public class FTRPGCalc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        GUI interfaceGrafica = new GUI(new Calculadora());
     }
 }
