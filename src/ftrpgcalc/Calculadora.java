@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2016 Doigyfu
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package ftrpgcalc;
 
 /**
@@ -28,6 +44,7 @@ public class Calculadora {
         subraca = 0;
         addBonusRaca();
         calcularTudo();
+        primeiroGrau = true;
     }
 
     //##########################################################################
@@ -55,7 +72,7 @@ public class Calculadora {
     
     public void decForca(){
         rmvBonusRaca();
-        if(forca < 0){
+        if(forca > 0){
             forca--;
         }
         addBonusRaca();
@@ -83,7 +100,7 @@ public class Calculadora {
     
     public void decAgilidade(){
         rmvBonusRaca();
-        if(agilidade < 0){
+        if(agilidade > 0){
             agilidade--;
         }
         addBonusRaca();
@@ -109,7 +126,7 @@ public class Calculadora {
     
     public void decVitalidade(){
         rmvBonusRaca();
-        if(vitalidade < 0){
+        if(vitalidade > 0){
             vitalidade--;
         }
         addBonusRaca();
@@ -135,7 +152,7 @@ public class Calculadora {
     
     public void decInteligencia(){
         rmvBonusRaca();
-        if(inteligencia < 0){
+        if(inteligencia > 0){
             inteligencia--;
         }
         addBonusRaca();
@@ -163,7 +180,7 @@ public class Calculadora {
     
     public void decDestreza(){
         rmvBonusRaca();
-        if(destreza < 0){
+        if(destreza > 0){
             destreza--;
         }
         addBonusRaca();
@@ -190,7 +207,7 @@ public class Calculadora {
     
     public void decPercepcao(){
         rmvBonusRaca();
-        if(percepcao < 0){
+        if(percepcao > 0){
             percepcao--;
         }
         addBonusRaca();
@@ -214,7 +231,7 @@ public class Calculadora {
     
     public void decCarisma(){
         rmvBonusRaca();
-        if(carisma < 0){
+        if(carisma > 0){
             carisma--;
         }
         addBonusRaca();
@@ -239,7 +256,7 @@ public class Calculadora {
     
     public void decPoderMagico(){
         rmvBonusRaca();
-        if(poderMagico < 0){
+        if(poderMagico > 0){
             poderMagico--;
         }
         addBonusRaca();
@@ -265,7 +282,7 @@ public class Calculadora {
     
     public void decResistencia(){
         rmvBonusRaca();
-        if(resistencia < 0){
+        if(resistencia > 0){
             resistencia--;
         }
         addBonusRaca();
@@ -277,7 +294,7 @@ public class Calculadora {
     //##  MÉTODOS RELACIONADOS AOS NÍVEIS
     //##########################################################################
     public int getHp() {
-        return hp;
+        return this.hp;
     }
 
     public void setHp(int hp) {
@@ -466,7 +483,9 @@ public class Calculadora {
     }
 
     public void setMagico(boolean magico) {
-        this.magico = magico;
+        if (magico != this.magico){
+            this.magico = magico;
+        }
     }
 
     public int getRaca() {
@@ -474,7 +493,9 @@ public class Calculadora {
     }
 
     public void setRaca(int raca) {
+        rmvBonusRaca();
         this.raca = raca;
+        addBonusRaca();
     }
 
     public int getSubraca() {
@@ -482,7 +503,9 @@ public class Calculadora {
     }
 
     public void setSubraca(int subraca) {
+        rmvBonusRaca();
         this.subraca = subraca;
+        addBonusRaca();
     }
 
     public boolean isPrimeiroGrau() {
@@ -490,7 +513,9 @@ public class Calculadora {
     }
 
     public void setPrimeiroGrau(boolean primeiroGrau) {
+        rmvBonusRaca();
         this.primeiroGrau = primeiroGrau;
+        addBonusRaca();
     }
 
     public void addBonusRaca() {
@@ -500,6 +525,7 @@ public class Calculadora {
                 carisma += 2;
                 inteligencia += 2;
                 destreza += 2;
+                calcularTudo();
                 break;
 
             case 1:
@@ -507,6 +533,7 @@ public class Calculadora {
                 poderMagico += 3;
                 carisma += 2;
                 inteligencia += 1;
+                calcularTudo();
                 break;
 
             case 2:
@@ -521,6 +548,7 @@ public class Calculadora {
                         agilidade += bonus;
                         destreza += bonus;
                         percepcao += bonus;
+                        calcularTudo();
                         bloqueio -= bonus;
                         break;
 
@@ -529,6 +557,7 @@ public class Calculadora {
                         forca += bonus;
                         agilidade += bonus;
                         percepcao += bonus;
+                        calcularTudo();
                         esquiva -= bonus;
                         break;
 
@@ -537,6 +566,7 @@ public class Calculadora {
                         inteligencia += bonus;
                         destreza += bonus;
                         percepcao += bonus;
+                        calcularTudo();
                         bloqueio -= bonus;
                         break;
 
@@ -545,6 +575,7 @@ public class Calculadora {
                         vitalidade += bonus;
                         inteligencia += bonus;
                         percepcao += bonus;
+                        calcularTudo();
                         esquiva -= bonus;
                         break;
 
@@ -553,6 +584,7 @@ public class Calculadora {
                         forca += bonus;
                         destreza += bonus;
                         inteligencia += bonus;
+                        calcularTudo();
                         break;
 
                     case 5:
@@ -560,6 +592,7 @@ public class Calculadora {
                         agilidade += bonus;
                         destreza += bonus;
                         percepcao += bonus;
+                        calcularTudo();
                         break;
 
                     case 6:
@@ -567,6 +600,7 @@ public class Calculadora {
                         forca += bonus;
                         agilidade += bonus;
                         vitalidade += bonus;
+                        calcularTudo();
                         break;
                         
                     default:
@@ -675,6 +709,7 @@ public class Calculadora {
             default:
                 System.exit(-1);
         }
+        calcularTudo();
     }
     
     //##########################################################################
@@ -690,6 +725,25 @@ public class Calculadora {
 
     public int getPontosGastos() {
         return pontosGastos;
+    }
+    
+    public void reiniciar(){
+        rmvBonusRaca();
+        magico = true;
+        raca = 0;
+        subraca = 0;
+        setForca(0);
+        setAgilidade(0);
+        setVitalidade(0);
+        setInteligencia(0);
+        setDestreza(0);
+        setPercepcao(0);
+        setCarisma(0);
+        setPoderMagico(0);
+        setResistencia(0);
+        addBonusRaca();
+        calcularTudo();
+        primeiroGrau = true;
     }
     
 }
