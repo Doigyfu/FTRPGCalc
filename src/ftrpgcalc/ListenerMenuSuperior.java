@@ -40,11 +40,11 @@ public class ListenerMenuSuperior implements ActionListener{
             calculadora.reiniciar();
             gui.atualizarValores();
         } else if (e.getSource() == gui.itemAjuda){
-            
+
         } else if (e.getSource() == gui.itemGraficos){
             gui.g.setVisible(true);
         } else if (e.getSource() == gui.itemSobre){
-            
+            gui.js.setVisible(true);
         }
     }
     

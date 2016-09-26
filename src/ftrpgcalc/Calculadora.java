@@ -485,6 +485,13 @@ public class Calculadora {
     public void setMagico(boolean magico) {
         if (magico != this.magico){
             this.magico = magico;
+            if(magico){
+                poderMagico = resistencia;
+                resistencia = 0;
+            } else {
+                resistencia = poderMagico;
+                poderMagico = 0;
+            }
         }
     }
 

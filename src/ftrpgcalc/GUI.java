@@ -28,11 +28,12 @@ import javax.swing.event.AncestorListener;
  */
 public class GUI {
 
-    private final String STRING_VERSAO = "0.1";
+    private String STRING_VERSAO = "0.1";
 
     Calculadora calculadora;
     
     Grafico g;
+    JanelaSobre js;
 
     private final String[] STRING_ATRIBUTO_PRIMARIO = {"Força:", "Agilidade:",
         "Vitalidade:", "Inteligência:", "Destreza:", "Percepção:", "Carisma:",
@@ -273,6 +274,7 @@ public class GUI {
 
         janela.setVisible(true);
         g = new Grafico(this);
+        js = new JanelaSobre(this);
         atualizarValores();
     }
 
@@ -349,5 +351,9 @@ public class GUI {
         painelAtributosSecundarios.updateUI();
         painelNiveis.updateUI();
         g.repaint();
+    }
+    
+    public String getVersao(){
+        return STRING_VERSAO;
     }
 }
