@@ -34,6 +34,8 @@ public class GUI {
     
     Grafico g;
     JanelaSobre js;
+    
+    ImageIcon icone = criaImageIcon("icon.png");
 
     private final String[] STRING_ATRIBUTO_PRIMARIO = {"Força:", "Agilidade:",
         "Vitalidade:", "Inteligência:", "Destreza:", "Percepção:", "Carisma:",
@@ -241,6 +243,7 @@ public class GUI {
 
         janela = new JFrame("Calculadora de Atributos V." + STRING_VERSAO);
         janela.setSize(larguraJanela, alturaJanela);
+        janela.setIconImage(icone.getImage());
         janela.setResizable(false);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setLocationRelativeTo(null);
@@ -351,5 +354,15 @@ public class GUI {
         painelAtributosSecundarios.updateUI();
         painelNiveis.updateUI();
         g.repaint();
+    }
+    
+    protected ImageIcon criaImageIcon(String path) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o banner.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
 }

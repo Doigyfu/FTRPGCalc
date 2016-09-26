@@ -13,6 +13,7 @@ public class JanelaSobre extends JFrame {
     GUI gui;
     String versao = "2.1";
     ImageIcon banner = criaImageIcon("banner.png");
+    ImageIcon icone = criaImageIcon("icon.png");
     int w = 0, h = 0;
     
     JLabel label1 = new JLabel("FTRPGCalc V." + versao);
@@ -69,6 +70,7 @@ public class JanelaSobre extends JFrame {
         setSize(w, h);
         setResizable(false);
         setTitle("Sobre");
+        setIconImage(icone.getImage());
         setLayout(new FlowLayout(FlowLayout.CENTER, 200, 0));
         add(painelLabel1);
         add(painelLabel2);
