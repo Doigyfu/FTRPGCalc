@@ -16,7 +16,9 @@
  */
 package ftrpgcalc;
 
+import java.awt.Desktop;
 import java.awt.event.*;
+import java.net.URI;
 
 /**
  * Classe que trabalha os eventos do menu superior da GUI.
@@ -40,7 +42,13 @@ public class ListenerMenuSuperior implements ActionListener{
             calculadora.reiniciar();
             gui.atualizarValores();
         } else if (e.getSource() == gui.itemAjuda){
-
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI("http://www.fairytailadventure.net/t7464-tutorial-completo-para-iniciantes"));
+                } catch (Exception ex) {
+                    
+                }
+            }
         } else if (e.getSource() == gui.itemGraficos){
             gui.g.setVisible(true);
         } else if (e.getSource() == gui.itemSobre){

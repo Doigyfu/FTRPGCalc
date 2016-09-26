@@ -16,26 +16,34 @@
  */
 package ftrpgcalc;
 
-import javax.swing.*;
+import java.net.URI;
+import java.awt.Desktop;
 import java.awt.event.*;
 
 /**
  * Listener para os eventos da janela Sobre
+ *
  * @author Doigyfu
  */
-public class ListenerJanelaSobre implements ActionListener{
-    
+public class ListenerJanelaSobre implements ActionListener {
+
     JanelaSobre js;
-    
-    ListenerJanelaSobre(JanelaSobre js){
+
+    ListenerJanelaSobre(JanelaSobre js) {
         this.js = js;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == js.getBotaoBanner()){
-            
+        if (e.getSource() == js.getBotaoBanner()) {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI("http://www.fairytailadventure.net/"));
+                } catch (Exception ex) {
+                    
+                }
+            }
         }
     }
-    
+
 }

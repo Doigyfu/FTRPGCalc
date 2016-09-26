@@ -28,7 +28,7 @@ import javax.swing.event.AncestorListener;
  */
 public class GUI {
 
-    private String STRING_VERSAO = "0.1";
+    private final String STRING_VERSAO = "2.1";
 
     Calculadora calculadora;
     
@@ -351,9 +351,5 @@ public class GUI {
         painelAtributosSecundarios.updateUI();
         painelNiveis.updateUI();
         g.repaint();
-    }
-    
-    public String getVersao(){
-        return STRING_VERSAO;
     }
 }
